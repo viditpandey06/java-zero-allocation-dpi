@@ -112,3 +112,18 @@ Try running it with **Java Flight Recorder (JFR)**:
 java -XX:StartFlightRecording=duration=30s,filename=profile.jfr -cp bin com.enterprise.dpi.core.DpiEngine huge_capture.pcap out.pcap
 ```
 You will notice the GC allocation rate is incredibly low compared to standard Java applications handling identical workloads!
+
+---
+
+## 👨‍💻 Author
+
+**Vidit Pandey**
+- GitHub: [@viditpandey06](https://github.com/viditpandey06)
+
+---
+
+## ⚖️ License
+
+**Copyright (c) 2026 Vidit Pandey. All Rights Reserved.**
+
+This project is hosted on GitHub for portfolio and demonstration purposes only. You may view and read the source code. However, you are **NOT** granted permission to download, copy, modify, distribute, or use this software (or any portion of it) for personal, educational, or commercial purposes without explicit, written permission from the author.
