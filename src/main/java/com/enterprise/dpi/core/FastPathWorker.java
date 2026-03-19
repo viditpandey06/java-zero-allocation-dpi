@@ -21,6 +21,8 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class FastPathWorker implements Runnable {
 
+    public static final ByteBuffer POISON_PILL = ByteBuffer.allocate(0);
+
     private final BlockingQueue<ByteBuffer> inputQueue;
     private final BlockingQueue<ByteBuffer> outputQueue;
     private final RuleManager rules;
@@ -49,6 +51,10 @@ public class FastPathWorker implements Runnable {
             while (!Thread.currentThread().isInterrupted()) {
                 // In a true high-perf scenario, use Disruptor SequenceBarrier here
                 ByteBuffer packetBuffer = inputQueue.take();
+
+                if (packetBuffer == POISON_PILL) {
+                    break;
+                }
 
                 // Copy limits to prevent corrupting the buffer when parsing
                 ByteBuffer processingBuf = packetBuffer.duplicate();
