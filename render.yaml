@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: dpi-engine-api
+    runtime: java
+    plan: free
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/dpi-engine-1.0-SNAPSHOT.jar
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: 8080

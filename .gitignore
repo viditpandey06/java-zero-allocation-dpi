@@ -33,7 +33,18 @@ replay_pid*
 *.ipr
 .vscode/
 
-# Project specific ignores
-*.pcap
+# Generated PCAP files (large, not needed in git)
+test_dpi.pcap
+filtered_output.pcap
+massive_capture.pcap
 *.jfr
 *.pcapng
+
+# Internal docs
+DEVELOPER_GUIDE.md
+generate_demo_pcap.py
+
+# Frontend build artifacts
+frontend/node_modules/
+frontend/dist/
+frontend/.env
