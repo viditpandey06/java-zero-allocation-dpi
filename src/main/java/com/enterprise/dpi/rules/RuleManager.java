@@ -1,5 +1,6 @@
 package com.enterprise.dpi.rules;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,11 +12,10 @@ public class RuleManager {
 
     private final Set<String> blockedDomains = new HashSet<>();
 
-    public RuleManager() {
-        // Load some sample rules (in a real app, read from config/DB)
-        blockedDomains.add("www.facebook.com");
-        blockedDomains.add("www.youtube.com");
-        blockedDomains.add("tiktok.com");
+    public RuleManager(Collection<String> domains) {
+        if (domains != null) {
+            blockedDomains.addAll(domains);
+        }
     }
 
     /**
@@ -25,19 +25,14 @@ public class RuleManager {
         if (sni == null || sni.isEmpty()) {
             return false;
         }
-
-        // Exact match
         if (blockedDomains.contains(sni)) {
             return true;
         }
-
-        // Suffix match (e.g. *.youtube.com)
         for (String blocked : blockedDomains) {
             if (sni.endsWith("." + blocked) || sni.equals(blocked)) {
                 return true;
             }
         }
-
         return false;
     }
 }
